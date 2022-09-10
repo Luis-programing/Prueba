@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+
+    <link rel="stylesheet" href="./css/mensaje.css">
+  </head>
+  <body id="cuerpo"> 
+
+    <h2>Esto es lo que me pidio espero le guste.</h2>
+
+    <div class="n-n">
+
+<form id="form">
+  <br>
+    <strong><label for="EnviodeEmail" class="form-label">Nombre</label>
+      <br>
+    <input type="text" class="form-input" autocomplete="off" placeholder="Nombre" name="name" required id="inputName">
+    <br><br>
+    <label for="Email" class="form-label">Email</label>
+<br>
+    <input type="Email" class="form-input"  autocomplete="off" placeholder="Email" name="Email" required id="inputEmail"></strong>
+    <br><br>
+  <label for="msj" class="form-label" >Mensaje</label> 
+  <br>
+  <textarea type="text" class="form-input" autocomplete="off" placeholder="mensaje " name="message" required></textarea>
+
+<br><br>
+
+
+
+<input class="btn btn-1 btn-success" id="button" type="submit" value="enviar">
+
+<input class="btn btn-2" type="reset" id="Borrar" name="Borrar" value="Borrar">
+
+ 
+</form>
+</div>
+
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+
+<script type="text/javascript">
+  emailjs.init('Qfr88v6jBuafUXqR_')
+</script>
+</body>
+
+<script type="text/javascript">
+  
+const btn = document.getElementById('button');
+
+document.getElementById('form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Enviando-mensaje...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_08jlaz4';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Enviar';
+      alert('Mensaje enviado..');
+      window.location="index.html";
+    }, (err) => {
+      btn.value = 'Enviar';
+      alert(JSON.stringify(err));
+    });
+});
+
+</script>
+
+</html>
